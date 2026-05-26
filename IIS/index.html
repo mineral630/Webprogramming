@@ -23,14 +23,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
+<header class="header">
         <div class="header-container">
-            <div class="logo"><h1>🌴 부산 로컬 플레이스</h1></div>
+            <div class="logo">
+                <h1>🌴 부산 로컬 플레이스</h1>
+            </div>
             <nav class="nav">
                 <ul>
                     <li><a href="/" class="active">홈</a></li>
                     <li><a href="#explore">탐색</a></li>
                     <li><a href="#saved" class="saved-nav" id="savedNav">저장됨 (<span id="savedCount">0</span>)</a></li>
+                    <li><a href="#" onclick="openAuthModal(event)" id="authNavBtn">로그인</a></li>
                 </ul>
             </nav>
         </div>
@@ -154,7 +157,7 @@
             </div>
         </div>
     </section>
-
+    
     <div id="placeModal" class="modal" style="display: none;">
         <div class="modal-overlay" onclick="closePlaceModal()"></div>
         <div class="modal-content">
@@ -179,7 +182,6 @@
                     <div id="infoTab" class="modal-tab active">
                         <h3>소개</h3>
                         <p id="modalDescription"></p>
-                        <h3>메뉴 & 가격</h3>
                         <ul class="modal-menu-list" id="modalMenu"></ul>
                         <p id="modalAddress" style="margin-top: 20px; font-size: 14px; color: #666;"><strong>주소:</strong></p>
                     </div>
@@ -240,7 +242,51 @@
                 </div>
             </div>
         </div>
-    </footer>
+</footer> <div id="authModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeAuthModal()"></div>
+        <div class="modal-content" style="max-width: 400px; padding: 30px;">
+            <button class="modal-close" onclick="closeAuthModal()">✕</button>
+            
+            <div id="loginSection">
+                <h2 style="margin-bottom: 20px; text-align: center; color: var(--dark);">🔐 로그인</h2>
+                <div class="filter-group" style="margin-bottom: 15px;">
+                    <label>아이디 (이메일)</label>
+                    <input type="email" id="loginEmail" style="padding: 10px; border: 1px solid var(--border); border-radius: 6px;" placeholder="example@email.com">
+                </div>
+                <div class="filter-group" style="margin-bottom: 20px;">
+                    <label>비밀번호</label>
+                    <input type="password" id="loginPassword" style="padding: 10px; border: 1px solid var(--border); border-radius: 6px;">
+                </div>
+                <button class="btn-secondary" style="width: 100%; margin-bottom: 15px;" onclick="handleLogin()">로그인하기</button>
+                <p style="text-align: center; font-size: 14px; color: #666;">계정이 없으신가요? <a href="#" onclick="switchAuthMode('register')" style="color: var(--primary);">회원가입</a></p>
+            </div>
+
+            <div id="registerSection" style="display: none;">
+                <h2 style="margin-bottom: 20px; text-align: center; color: var(--dark);">🌴 회원가입</h2>
+                <div class="filter-group" style="margin-bottom: 15px;">
+                    <label>닉네임</label>
+                    <input type="text" id="regName" style="padding: 10px; border: 1px solid var(--border); border-radius: 6px;">
+                </div>
+                <div class="filter-group" style="margin-bottom: 15px;">
+                    <label>이메일 주소</label>
+                    <input type="email" id="regEmail" style="padding: 10px; border: 1px solid var(--border); border-radius: 6px;">
+                </div>
+                <div class="filter-group" style="margin-bottom: 20px;">
+                    <label>비밀번호</label>
+                    <input type="password" id="regPassword" style="padding: 10px; border: 1px solid var(--border); border-radius: 6px;">
+                </div>
+                <button class="btn-secondary" style="width: 100%; margin-bottom: 15px; background: var(--success);" onclick="handleRegister()">가입 완료</button>
+                <p style="text-align: center; font-size: 14px; color: #666;">이미 계정이 있으신가요? <a href="#" onclick="switchAuthMode('login')" style="color: var(--primary);">로그인</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBscd9CRA6SNMFDu-_U58LSRcAe4629X80&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
+    
 
     <script src="data.js"></script>
     <script src="script.js"></script>
