@@ -89,7 +89,8 @@ async function loadLiveGooglePlaces() {
                     description: `부산에서 알아주는 맛집입니다`,
                     rating: place.rating ? place.rating.toFixed(1) : "4.3",
                     reviews: place.userRatingCount || 0,
-                    address: place.nationalPhoneNumber || "전화번호 정보가 없습니다.",
+                    address: place.formattedAddress || "부산 주소지 확인 중",
+                    phone: place.nationalPhoneNumber || "전화번호 정보가 없습니다.",
                     latitude: place.location.latitude,
                     longitude: place.location.longitude,
 
@@ -346,17 +347,13 @@ function openPlaceModal(e, id) {
     document.getElementById('modalTitle').textContent = pl.title;
     document.getElementById('modalMeta').innerHTML = `<span class="badge region">${pl.region}</span><span class="badge atmosphere">${pl.atmosphere}</span>`;
     document.getElementById('modalRating').innerHTML = `<span class="stars">★★★★★</span> ${pl.rating} / 5.0 (${pl.reviews}개 리뷰)`;
-
-    // 💡 [핵심 수리 구역] index.html에 준비된 정식 ID 슬롯들의 데이터만 정밀하게 타격하여 교체합니다.
-    // 기존 HTML 구조를 덮어쓰지 않으므로 요소가 유실되어 닫은 후 안 열리는 버그가 완벽하게 쇄신됩니다!
     document.getElementById('modalDescription').textContent = pl.description;
-    
-    // 💡 [데이터 정상 매핑] 구글에서 받아온 진짜 주소(formattedAddress)와 전화번호(phoneNumber)를 정해진 자리에 심어줍니다.
-    // pl.address는 앞단에서 place.nationalPhoneNumber로 매핑되어 있으므로 변수명을 명확하게 쪼개어 정돈했습니다.
+
+
     const realAddress = pl.description.replace("주소: [", "").replace("]", "") || "부산 주소지 확인 중";
     document.getElementById('modalAddress').innerHTML = `
-        <strong>📞 전화번호:</strong> ${pl.address}<br>
-        <strong style="display:inline-block; margin-top:8px;">📍 도로명주소:</strong> ${realAddress}
+        <strong>📍 도로명주소:</strong> ${pl.address}<br>
+        <strong style="display:inline-block; margin-top:8px;">📞 전화번호:</strong> ${pl.phone}
     `;
 
     // 2. 구글맵 실시간 생생 리뷰 UI 렌더링 파이프라인
