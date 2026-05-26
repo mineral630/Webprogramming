@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="부산을 찾는 여행자와 지역 주민에게 신뢰할 수 있는 맛집·여행 정보를 제공합니다.">
+    <meta name="keywords" content="부산, 맛집, 여행, 로컬, 리뷰">
+    <meta property="og:title" content="부산 로컬 플레이스 - 부산 맛집·여행 정보">
+    <meta property="og:description" content="부산의 숨은 맛집과 여행지를 발견하세요.">
+    <meta property="og:image" content="/images/og-image.jpg">
+    <meta property="og:url" content="https://busanlocal.place">
+    <meta name="theme-color" content="#FF6B6B">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "부산 로컬 플레이스",
+      "url": "https://busanlocal.place",
+      "description": "부산의 신뢰할 수 있는 맛집·여행 정보 제공 플랫폼"
+    }
+    </script>
+    <title>부산 로컬 플레이스 - 부산 맛집·여행 정보</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo"><h1>🌴 부산 로컬 플레이스</h1></div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/" class="active">홈</a></li>
+                    <li><a href="#explore">탐색</a></li>
+                    <li><a href="#saved" class="saved-nav" id="savedNav">저장됨 (<span id="savedCount">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="weather-banner">
+        <div class="weather-content">
+            <span id="weatherInfo">날씨 정보 로딩 중...</span>
+            <span class="weather-update">최근 업데이트: <span id="weatherTime">--:--</span></span>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>부산의 숨은 맛집과 여행지를 발견하세요</h2>
+            <p>여행자와 지역 주민을 위한 신뢰할 수 있는 정보 플랫폼</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="맛집, 여행지 검색...">
+                <button class="search-btn">검색</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="filters-section">
+        <div class="container">
+            <h3>필터로 찾기</h3>
+            <div class="filters">
+                <div class="filter-group">
+                    <label>지역</label>
+                    <select id="regionFilter">
+                        <option value="">전체</option>
+                        <option value="해운대">해운대</option>
+                        <option value="광안리">광안리</option>
+                        <option value="서면">서면</option>
+                        <option value="남포동">남포동</option>
+                        <option value="송정">송정</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>분위기</label>
+                    <select id="atmosphereFilter">
+                        <option value="">전체</option>
+                        <option value="데이트">데이트</option>
+                        <option value="가족">가족</option>
+                        <option value="혼밥">혼밥</option>
+                        <option value="모임">모임</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>가격대</label>
+                    <select id="priceFilter">
+                        <option value="">전체</option>
+                        <option value="budget">~ 15,000원</option>
+                        <option value="moderate">15,000 ~ 30,000원</option>
+                        <option value="expensive">30,000원 ~</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>식사 유형</label>
+                    <select id="mealTypeFilter">
+                        <option value="">전체</option>
+                        <option value="한식">한식</option>
+                        <option value="양식">양식</option>
+                        <option value="일식">일식</option>
+                        <option value="중식">중식</option>
+                        <option value="카페">카페</option>
+                    </select>
+                </div>
+                <button class="reset-filters">필터 초기화</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="explore" class="explore-section">
+        <div class="container">
+            <h2>인기 추천</h2>
+            <div class="places-grid" id="placesGrid"></div>
+        </div>
+    </section>
+
+    <section id="saved" class="saved-section" style="display:none;">
+        <div class="container">
+            <h2>저장된 장소</h2>
+            <div class="places-grid" id="savedGrid">
+                <p class="empty-message">저장된 장소가 없습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="shorts-section">
+        <div class="container">
+            <h2>🔥 실시간 #부산 #맛집 인기 Shorts</h2>
+            <div class="youtube-cta">
+                <p>더 많은 콘텐츠는 유튜브 공식 해시태그 광장과 채널에서 확인하세요!</p>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px;">
+                    <a href="https://www.youtube.com/results?search_query=%23%EB%B6%80%EC%82%B0+%23%EB%A7%9B%EC%A7%91&sp=EgIQCQ%253D%253D" target="_blank" class="btn-primary">유튜브에서 #부산맛집 직관하기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses-section">
+        <div class="container">
+            <h2>부산 여행 코스</h2>
+            <div class="course-cards">
+                <div class="course-card">
+                    <h3>⏰ 반나절 코스</h3>
+                    <p>광안리 일몰 & 해변 카페</p>
+                    <a href="#" class="btn-secondary">코스 보기</a>
+                </div>
+                <div class="course-card">
+                    <h3>🌅 당일 코스</h3>
+                    <p>해운대 → 서면 → 남포동</p>
+                    <a href="#" class="btn-secondary">코스 보기</a>
+                </div>
+                <div class="course-card">
+                    <h3>🏨 2일 코스</h3>
+                    <p>부산 전역 완벽 가이드</p>
+                    <a href="#" class="btn-secondary">코스 보기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="placeModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closePlaceModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePlaceModal()">✕</button>
+            <div class="modal-header">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="장소" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22200%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="modal-title-section">
+                    <h2 id="modalTitle"></h2>
+                    <div id="modalMeta" class="modal-meta"></div>
+                    <div id="modalRating" class="modal-rating"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-tabs">
+                    <button class="modal-tab-btn active" onclick="switchModalTab('info')">정보</button>
+                    <button class="modal-tab-btn" onclick="switchModalTab('map')">위치</button>
+                    <button class="modal-tab-btn" onclick="switchModalTab('reviews')">리뷰</button>
+                </div>
+                <div class="modal-tab-content">
+                    <div id="infoTab" class="modal-tab active">
+                        <h3>소개</h3>
+                        <p id="modalDescription"></p>
+                        <h3>메뉴 & 가격</h3>
+                        <ul class="modal-menu-list" id="modalMenu"></ul>
+                        <p id="modalAddress" style="margin-top: 20px; font-size: 14px; color: #666;"><strong>주소:</strong></p>
+                    </div>
+                    <div id="mapTab" class="modal-tab">
+                        <div id="googleMapDisplay" class="google-map-container" style="width: 100%; height: 350px;"></div>
+                        <p style="margin-top: 15px; font-size: 12px; color: #999; text-align: center;">💡 선택하신 장소의 구글 지도 위치 정보가 표시됩니다.</p>
+                    </div>
+                    <div id="reviewsTab" class="modal-tab">
+                        <h3>방문자 리뷰</h3>
+                        <div class="modal-reviews">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <span class="review-author">김부산 ★★★★★</span>
+                                    <span class="review-date">1주일 전</span>
+                                </div>
+                                <p class="review-text">정말 맛있었어요! 추천합니다.</p>
+                            </div>
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <span class="review-author">이여행 ★★★★</span>
+                                    <span class="review-date">2주일 전</span>
+                                </div>
+                                <p class="review-text">분위기 좋고 음식도 훌륭합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="modalReserveBtn">예약하기</button>
+                <button class="btn-secondary" id="modalSaveBtn">저장하기</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>부산 로컬 플레이스</h4>
+                    <p>부산의 신뢰할 수 있는 맛집·여행 정보 플랫폼</p>
+                </div>
+                <div class="footer-section">
+                    <h4>링크</h4>
+                    <ul>
+                        <li><a href="#">홈</a></li>
+                        <li><a href="#">탐색</a></li>
+                        <li><a href="#">유튜브</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>SNS</h4>
+                    <ul>
+                        <li><a href="#">인스타그램</a></li>
+                        <li><a href="#">유튜브</a></li>
+                        <li><a href="#">카카오톡</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBscd9CRA6SNMFDu-_U58LSRcAe4629X80&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
