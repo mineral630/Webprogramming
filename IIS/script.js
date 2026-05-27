@@ -4,8 +4,6 @@ let googleMapObj = null;
 let currentPage = 1;
 const itemsPerPage = 9;
 const SERVER_URL = "http://192.168.121.1:5000";
-
-const SERVER_URL = "http://localhost:5000"; // ASP.NET 백엔드 서버 포트
 let serverSavedIds = [];                    // 서버에서 동기화된 찜하기 ID 리스트 배열
 
 document.addEventListener('DOMContentLoaded', function () {
